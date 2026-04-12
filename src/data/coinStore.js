@@ -28,9 +28,63 @@ let coins = [
     created_at: seededAt,
     updated_at: seededAt,
   },
+  {
+    id: 4,
+    name: "Cardano",
+    symbol: "ADA",
+    price: 0.62,
+    change24h: 1.8,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 5,
+    name: "XRP",
+    symbol: "XRP",
+    price: 0.58,
+    change24h: -0.9,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 6,
+    name: "Dogecoin",
+    symbol: "DOGE",
+    price: 0.14,
+    change24h: 3.2,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 7,
+    name: "Litecoin",
+    symbol: "LTC",
+    price: 84.5,
+    change24h: -1.5,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 8,
+    name: "Binance Coin",
+    symbol: "BNB",
+    price: 590,
+    change24h: 0.7,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 9,
+    name: "Avalanche",
+    symbol: "AVAX",
+    price: 36.2,
+    change24h: 2.1,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
 ];
 
-let nextCoinId = 4;
+let nextCoinId = 10;
 
 function clone(item) {
   return { ...item };
