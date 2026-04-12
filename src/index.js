@@ -2,9 +2,17 @@ import { Hono } from "hono";
 import coins from "./routes/coins.js";
 import { isApiError } from "./utils/errors.js";
 import { sendError } from "./utils/response.js";
+import { cors } from "hono/cors";
 
 const app = new Hono();
 const api = new Hono();
+
+app.use(
+  "*",
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 
 app.use("*", async (c, next) => {
   c.set("traceId", crypto.randomUUID());
