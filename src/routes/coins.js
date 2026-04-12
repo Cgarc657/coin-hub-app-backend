@@ -27,6 +27,16 @@ coins.post("/", async (c) => {
   return sendResource(c, coin, 201);
 });
 
+coins.get("/search/:name", (c) => {
+  const searchName = c.req.param("name").toLowerCase();
+
+  const results = listCoins().filter((coin) =>
+    coin.name.toLowerCase().includes(searchName),
+  );
+
+  return sendCollection(c, results);
+});
+
 coins.get("/:id", (c) => {
   const id = parseIdParam(c.req.param("id"));
   const coin = getCoinById(id);
