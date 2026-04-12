@@ -10,7 +10,8 @@ const api = new Hono();
 app.use(
   "*",
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
+    allowMethods: ["GET", "POST", "PATCH", "DELETE"],
   }),
 );
 
