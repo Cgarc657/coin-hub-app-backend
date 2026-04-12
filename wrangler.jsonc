@@ -1,8 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "coin-hub-app",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-04-09"
+  "main": "src/index.js",
+  "compatibility_date": "2026-04-09",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],

@@ -5,7 +5,7 @@ import {
   createCoin,
   updateCoin,
   deleteCoin,
-} from "../data/store.js";
+} from "../data/coinStore.js";
 
 import { parseJsonBody } from "../utils/body.js";
 import { ApiError } from "../utils/errors.js";
