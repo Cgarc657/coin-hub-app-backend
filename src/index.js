@@ -4,6 +4,7 @@ import { isApiError } from "./utils/errors.js";
 import { sendError } from "./utils/response.js";
 import { cors } from "hono/cors";
 import auth from "./routes/auth.js";
+import favorites from "./routes/favorites.js";
 
 const app = new Hono();
 const api = new Hono();
@@ -24,6 +25,8 @@ app.use("*", async (c, next) => {
 api.route("/coins", coins);
 
 api.route("/auth", auth);
+
+api.route("/favorites", favorites);
 
 app.route("/api", api);
 
