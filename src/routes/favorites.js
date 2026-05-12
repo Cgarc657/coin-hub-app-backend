@@ -12,7 +12,7 @@ import { parseIdParam } from "../utils/validation.js";
 const favorites = new Hono();
 
 favorites.get("/", (c) => {
-  const userId = 1;
+  const userId = Number(c.req.query("userId"));
 
   const data = listFavoritesByUser(userId);
 
@@ -20,8 +20,9 @@ favorites.get("/", (c) => {
 });
 
 favorites.post("/", async (c) => {
-  const userId = 1;
   const payload = await parseJsonBody(c);
+
+  const userId = Number(payload.userId);
 
   if (!payload.coinId) {
     throw new ApiError(400, "BAD_REQUEST", "coinId is required.");
@@ -37,7 +38,7 @@ favorites.post("/", async (c) => {
 });
 
 favorites.delete("/:coinId", (c) => {
-  const userId = 1;
+  const userId = Number(c.req.query("userId"));
   const coinId = parseIdParam(c.req.param("coinId"));
 
   const removed = removeFavorite(userId, coinId);
