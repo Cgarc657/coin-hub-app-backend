@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { parseJsonBody } from "../utils/body.js";
 import { ApiError } from "../utils/errors.js";
 import { sendResource } from "../utils/response.js";
-import { createUser, getUserByEmail } from "../data/userStore.js";
+
+import { createUser, findUserByEmail } from "../data/users.repository.js";
 
 const auth = new Hono();
 
@@ -13,11 +14,15 @@ auth.post("/register", async (c) => {
     throw new ApiError(400, "BAD_REQUEST", "Missing required fields.");
   }
 
-  const user = createUser(payload);
+  const existingUser = await findUserByEmail(c, payload.email);
 
-  if (!user) {
+  if (existingUser) {
     throw new ApiError(409, "CONFLICT", "Email already exists.");
   }
+
+  await createUser(c, payload.email, payload.password);
+
+  const user = await findUserByEmail(c, payload.email);
 
   return sendResource(c, user, 201);
 });
@@ -29,7 +34,7 @@ auth.post("/login", async (c) => {
     throw new ApiError(400, "BAD_REQUEST", "Missing email or password.");
   }
 
-  const user = getUserByEmail(payload.email);
+  const user = await findUserByEmail(c, payload.email);
 
   if (!user || user.password !== payload.password) {
     throw new ApiError(401, "UNAUTHORIZED", "Invalid email or password.");
