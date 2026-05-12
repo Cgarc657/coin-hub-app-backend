@@ -1,3 +1,5 @@
+import { getCoinById } from "./coinStore.js";
+
 let favorites = [];
 
 let nextFavoriteId = 1;
@@ -11,7 +13,16 @@ function nowIso() {
 }
 
 export function listFavoritesByUser(userId) {
-  return favorites.filter((favorite) => favorite.userId === userId).map(clone);
+  return favorites
+    .filter((favorite) => favorite.userId === userId)
+    .map((favorite) => {
+      const coin = getCoinById(favorite.coinId);
+
+      return {
+        ...favorite,
+        ...coin,
+      };
+    });
 }
 
 export function addFavorite(userId, coinId) {
