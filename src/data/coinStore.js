@@ -82,9 +82,63 @@ let coins = [
     created_at: seededAt,
     updated_at: seededAt,
   },
+  {
+    id: 10,
+    name: "Chainlink",
+    symbol: "LINK",
+    price: 16.4,
+    change24h: 2.7,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 11,
+    name: "Polkadot",
+    symbol: "DOT",
+    price: 7.8,
+    change24h: -1.9,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 12,
+    name: "Shiba Inu",
+    symbol: "SHIB",
+    price: 0.000024,
+    change24h: 5.1,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 13,
+    name: "Toncoin",
+    symbol: "TON",
+    price: 6.3,
+    change24h: 3.4,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 14,
+    name: "TRON",
+    symbol: "TRX",
+    price: 0.12,
+    change24h: -0.6,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 15,
+    name: "Near Protocol",
+    symbol: "NEAR",
+    price: 5.9,
+    change24h: 4.2,
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
 ];
 
-let nextCoinId = 10;
+let nextCoinId = 16;
 
 function clone(item) {
   return { ...item };
