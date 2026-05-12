@@ -10,7 +10,7 @@ const auth = new Hono();
 auth.post("/register", async (c) => {
   const payload = await parseJsonBody(c);
 
-  if (!payload.name || !payload.email || !payload.password) {
+  if (!payload.email || !payload.password) {
     throw new ApiError(400, "BAD_REQUEST", "Missing required fields.");
   }
 

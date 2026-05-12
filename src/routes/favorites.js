@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import {
-  listFavoritesByUser,
+  getFavoritesByUser,
   addFavorite,
   removeFavorite,
-} from "../data/favoriteStore.js";
+} from "../data/favorites.repository.js";
 import { parseJsonBody } from "../utils/body.js";
 import { ApiError } from "../utils/errors.js";
 import { sendCollection, sendResource } from "../utils/response.js";
@@ -11,10 +11,10 @@ import { parseIdParam } from "../utils/validation.js";
 
 const favorites = new Hono();
 
-favorites.get("/", (c) => {
+favorites.get("/", async (c) => {
   const userId = Number(c.req.query("userId"));
 
-  const data = listFavoritesByUser(userId);
+  const data = await getFavoritesByUser(c, userId);
 
   return sendCollection(c, data);
 });
@@ -28,24 +28,23 @@ favorites.post("/", async (c) => {
     throw new ApiError(400, "BAD_REQUEST", "coinId is required.");
   }
 
-  const favorite = addFavorite(userId, Number(payload.coinId));
+  await addFavorite(c, userId, Number(payload.coinId));
 
-  if (!favorite) {
-    throw new ApiError(409, "CONFLICT", "Coin already favorited.");
-  }
-
-  return sendResource(c, favorite, 201);
+  return sendResource(
+    c,
+    {
+      userId,
+      coinId: Number(payload.coinId),
+    },
+    201,
+  );
 });
 
-favorites.delete("/:coinId", (c) => {
+favorites.delete("/:coinId", async (c) => {
   const userId = Number(c.req.query("userId"));
   const coinId = parseIdParam(c.req.param("coinId"));
 
-  const removed = removeFavorite(userId, coinId);
-
-  if (!removed) {
-    throw new ApiError(404, "NOT_FOUND", "Favorite not found.");
-  }
+  await removeFavorite(c, userId, coinId);
 
   return c.body(null, 204);
 });
