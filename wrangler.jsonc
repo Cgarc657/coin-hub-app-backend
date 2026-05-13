@@ -1,43 +1,38 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "coin-hub-app",
-	"main": "src/index.js",
-	"compatibility_date": "2026-04-09",
-	// "compatibility_flags": [
-	//   "nodejs_compat"
-	// ],
-	// "vars": {
-	//   "MY_VAR": "my-variable"
-	// },
-	// "kv_namespaces": [
-	//   {
-	//     "binding": "MY_KV_NAMESPACE",
-	//     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-	//   }
-	// ],
-	// "r2_buckets": [
-	//   {
-	//     "binding": "MY_BUCKET",
-	//     "bucket_name": "my-bucket"
-	//   }
-	// ],
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "coin-hub-db",
-			"database_id": "",
-		},
-		{
-			"binding": "coin_hub_db",
-			"database_name": "coin-hub-db",
-			"database_id": "167f3a5f-c602-4a9c-9442-3a184b4b6d2b"
-		},
-	],
-	// "ai": {
-	//   "binding": "AI"
-	// },
-	// "observability": {
-	//   "enabled": true,
-	//   "head_sampling_rate": 1
-	// }
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "coin-hub-app",
+  "main": "src/index.js",
+  "compatibility_date": "2026-04-09",
+  // "compatibility_flags": [
+  //   "nodejs_compat"
+  // ],
+  // "vars": {
+  //   "MY_VAR": "my-variable"
+  // },
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "coin-hub-db",
+      "database_id": "167f3a5f-c602-4a9c-9442-3a184b4b6d2b",
+    },
+  ],
+  // "ai": {
+  //   "binding": "AI"
+  // },
+  // "observability": {
+  //   "enabled": true,
+  //   "head_sampling_rate": 1
+  // }
 }

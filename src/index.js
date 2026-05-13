@@ -39,6 +39,8 @@ app.onError((error, c) => {
     return sendError(c, error.status, error.code, error.message, error.details);
   }
 
+  console.error(error);
+
   return sendError(
     c,
     500,
