@@ -1,11 +1,24 @@
 import { and, eq } from "drizzle-orm";
 import { favorites } from "./schema.js";
 import { getDb } from "./db.js";
+import { getCoinById } from "./coinStore.js";
 
 export async function getFavoritesByUser(c, userId) {
   const db = getDb(c);
 
-  return await db.select().from(favorites).where(eq(favorites.userId, userId));
+  const userFavorites = await db
+    .select()
+    .from(favorites)
+    .where(eq(favorites.userId, userId));
+
+  return userFavorites.map((favorite) => {
+    const coin = getCoinById(favorite.coinId);
+
+    return {
+      ...favorite,
+      ...coin,
+    };
+  });
 }
 
 export async function addFavorite(c, userId, coinId) {
